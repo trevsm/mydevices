@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <div class="container"></div>
+  <body>
+    <script>
+      const url = "https://trevorjs.dev"
+      const deviceMap = {
+        'laptop': { width: 1920, height: 1080 },
+        'pixel 4': { width: 441, height: 731 },
+      }
+      const selectedDevices = ['laptop', 'pixel 4']
+
+      function createImage(url, id) {
+        const w = deviceMap[id].width
+        const h = deviceMap[id].height
+        const img = document.createElement('img')
+        img.src = `http://localhost:3000/api?q=${url}&width=${w}&height=${h}`
+        img.title = id
+        img.style.maxWidth = '300px'
+        return img
+      }
+
+      function addImagesToContainer(url, devices) {
+        const container = document.querySelector('.container')
+        container.innerHTML = ""
+        devices.forEach(id => {
+            container.appendChild(createImage(url, id))
+        })
+    }
+
+    addImagesToContainer(url, selectedDevices)
+    
+    </script>
+  </body>
+</html>
