@@ -1,0 +1,9 @@
+.categories{
+    display:flex;
+    flex-wrap: wrap;
+}
+.categories .category{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}

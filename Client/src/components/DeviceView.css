@@ -1,0 +1,9 @@
+.viewContainer{
+    margin: 10px;
+}
+.viewContainer img {
+    margin: 20px;
+    background-color: #1b1b1b;
+    border: 10px solid #171717;
+    border-radius: 17px;
+}
