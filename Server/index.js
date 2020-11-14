@@ -1,7 +1,6 @@
 const express = require('express')
 const { exec } = require('child_process')
 const fs = require('fs')
-const path = require('path')
 const app = express()
 const puppeteer = require('puppeteer')
 
@@ -10,50 +9,41 @@ app.use((req, res, next) => {
   return next()
 })
 
-const dir = path.join(__dirname, '/public')
-
-app.use(express.static(dir))
+async function getScreenShot(url, filename, w, h) {
+  const browser = await puppeteer.launch()
+  const page = await browser.newPage()
+  await page.setViewport({ width: w, height: h })
+  await page.goto(url, { waitUntil: 'networkidle2' })
+  await page.screenshot({ path: `images/${filename}.png` })
+  await browser.close()
+}
 
 app.get('/api', async (client_req, client_res) => {
-  try {
-    const url = client_req.query.q
-    const origin = url.split('/')[2]
+  const url = client_req.query.q
+  const origin = url.split('/')[2]
 
-    let w = parseInt(client_req.query.width)
-    let h = parseInt(client_req.query.height)
+  let w = parseInt(client_req.query.width)
+  let h = parseInt(client_req.query.height)
 
-    w = !w | (w > 5000) ? 1920 : w
-    h = !h | (h > 5000) ? 1080 : h
+  w = !w | (w > 5000) ? 1920 : w
+  h = !h | (h > 5000) ? 1080 : h
 
-    const filename = `${origin}${w}x${h}`
+  const filename = `${origin}${w}x${h}`
 
-    const browser = await puppeteer.launch()
-    const page = await browser.newPage()
-    await page.setViewport({ width: w, height: h })
-    await page.goto(url, { waitUntil: 'networkidle0' })
-    await page.screenshot({ path: `public/${filename}.png` })
-    await browser.close()
+  getScreenShot(url, filename, w, h)
+    .then(() => {
+      client_res.writeHead(200, { 'content-type': 'image/png' })
 
-    client_res.writeHead(200, { 'content-type': 'image/png' })
+      setTimeout(() => {
+        exec(`rm ./images/${filename}.png`)
+      }, 1000)
 
-    setTimeout(() => {
-      fs.writeFile(`${filename}.sh`, `rm ./public/${filename}.png && rm ./${filename}.sh`, () => {
-        exec(`sh ${filename}.sh`)
-      })
-    }, 1000)
-
-    fs.createReadStream(`public/${filename}.png`).pipe(client_res)
-  } catch (e) {
-    client_res.sendStatus(404)
-  }
-})
-
-app.get('/image.png', (client_req, client_res) => {
-  client_res.sendStatus(403)
-})
-
-app.get('/', (client_req, client_res) => {
-  client_res.send('images/index.html')
+      fs.createReadStream(`images/${filename}.png`).pipe(client_res)
+    })
+    .catch((e) => {
+      console.log(e)
+      client_res.sendStatus(404)
+    })
 })
 
 app.listen(5000, () => console.log('listening on port 5000.'))

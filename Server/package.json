@@ -15,7 +15,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev" : "nodemon index.js --config nodemon.json"
   },
   "keywords": [],
   "author": "",

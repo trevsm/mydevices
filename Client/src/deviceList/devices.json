@@ -1,0 +1,146 @@
+{
+    "BlackBerry Z30": {
+      "width": 360,
+      "height": 640
+    },
+    "BlackBerry PlayBook": {
+      "width": 600,
+      "height": 1040
+    },
+    "Galaxy Note 3": {
+      "width": 360,
+      "height": 640
+    },
+    "Galaxy Note 2": {
+      "width": 360,
+      "height": 640
+    },
+    "Galaxy S3": {
+      "width": 360,
+      "height": 640
+    },
+    "Kindle Fire HDX": {
+      "width": 800,
+      "height": 1280
+    },
+    "LG Optimus L70": {
+      "width": 384,
+      "height": 640
+    },
+    "Laptop with HiDPI screen": {
+      "width": 1440,
+      "height": 900
+    },
+    "Laptop with MDPI screen": {
+      "width": 1280,
+      "height": 800
+    },
+    "Laptop with touch": {
+      "width": 1280,
+      "height": 950
+    },
+    "Microsoft Lumia 550": {
+      "width": 360,
+      "height": 640
+    },
+    "Microsoft Lumia 950": {
+      "width": 360,
+      "height": 640
+    },
+    "Moto G4": {
+      "width": 360,
+      "height": 640
+    },
+    "Nexus 10": {
+      "width": 1280,
+      "height": 800
+    },
+    "Nexus 4": {
+      "width": 384,
+      "height": 640
+    },
+    "Nexus 5": {
+      "width": 360,
+      "height": 640
+    },
+    "Nexus 5X": {
+      "width": 412,
+      "height": 732
+    },
+    "Nexus 6": {
+      "width": 412,
+      "height": 732
+    },
+    "Nexus 6P": {
+      "width": 412,
+      "height": 732
+    },
+    "Nexus 7": {
+      "width": 600,
+      "height": 960
+    },
+    "Nokia Lumia 520": {
+      "width": 320,
+      "height": 533
+    },
+    "Nokia N9": {
+      "width": 480,
+      "height": 854
+    },
+    "iPad Mini": {
+      "width": 768,
+      "height": 1024
+    },
+    "iPhone 4": {
+      "width": 320,
+      "height": 480
+    },
+    "JioPhone 2": {
+      "width": 240,
+      "height": 320
+    },
+    "Galaxy S5": {
+      "width": 360,
+      "height": 640
+    },
+    "Pixel 2": {
+      "width": 411,
+      "height": 731
+    },
+    "Pixel 2XL": {
+      "width": 411,
+      "height": 823
+    },
+    "iPhone 5/SE": {
+      "width": 320,
+      "height": 568
+    },
+    "iPhone 6/7/8": {
+      "width": 375,
+      "height": 667
+    },
+    "iPhone 6/7/8 Plus": {
+      "width": 414,
+      "height": 736
+    },
+    "iPhone X": {
+      "width": 375,
+      "height": 812
+    },
+    "iPad": {
+      "width": 768,
+      "height": 1024
+    },
+    "iPad Pro": {
+      "width": 1024,
+      "height": 1366
+    },
+    "Surface Duo": {
+      "width": 540,
+      "height": 720
+    },
+    "Galaxy Fold": {
+      "width": 280,
+      "height": 653
+    }
+  }

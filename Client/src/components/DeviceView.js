@@ -1,29 +1,29 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import Spinner from './Spinner'
 import './DeviceView.css'
 
 export default function DeviceViews(props) {
-  const url = 'https://dotspencer.com'
   function views() {
-    if (JSON.stringify(props.devices) !== '{}') {
-      return props.currentDevices.map(name => {
-        const obj = props.devices[name]
-        const width = obj.height
-        const height = obj.width
-        return (
+    return props.currentDevices.map(name => {
+      const obj = props.devices[name]
+      return (
+        <div
+          className={`${name} device`}
+          key={name}
+          style={{ width: obj.width / 3, height: obj.height / 3 }}
+        >
+          <div className="spinner">
+            <Spinner />
+          </div>
           <img
-            key={name}
-            src={`http://localhost:5000/api?q=${url}&width=${width}&height=${height}`}
+            src={`http://localhost:5000/api?q=${props.url}&width=${obj.width}&height=${obj.height}`}
             id="Laptop"
             title={name}
             alt={name}
-            style={{ width: width / 3, height: height / 3 }}
           />
-        )
-      })
-    } else {
-      return 'loading'
-    }
+        </div>
+      )
+    })
   }
-  useEffect(() => {}, [props.devices])
   return <div className="viewContainer">{views()}</div>
 }

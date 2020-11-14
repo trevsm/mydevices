@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
+import devices from './deviceList/devices.json';
 import CategoryInputs from './components/CategoryInputs'
 import DeviceView from './components/DeviceView'
 import 'minireset.css'
+import './App.css'
 
 export default function App() {
-  const [devices, setDevices] = useState({})
-  const [currentDevices, setCurrentDevices] = useState([
-    'Apple iPhone 5',
-  ])
-  useEffect(() => {
-    fetch(
-      'https://gist.githubusercontent.com/trevsm/6a99a2e4b55b767687f7d7eb28cb7454/raw/cb4db3ad1ab83fb4b5007f0b8bb31f215951c36a/devices.json'
-    )
-      .then(data => data.json())
-      .then(json => {
-        setDevices(json)
-      })
-  }, [])
+  const [url, setUrl] = useState('https://example.com')
+  const [currentDevices, setCurrentDevices] = useState(['BlackBerry Z30'])
+
   return (
     <>
-      <CategoryInputs devices={devices} setCurrentDevices={setCurrentDevices} />
-      <DeviceView devices={devices} currentDevices={currentDevices} />
+      <CategoryInputs
+        devices={devices}
+        setUrl={setUrl}
+        url={url}
+        currentDevices={currentDevices}
+        setCurrentDevices={setCurrentDevices}
+      />
+      <DeviceView devices={devices} url={url} currentDevices={currentDevices} />
     </>
   )
 }
