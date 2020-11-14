@@ -6,7 +6,6 @@ export default function CategoryInputs(props) {
     let final = [...props.currentDevices]
 
     if (props.currentDevices.includes(deviceName)) {
-      console.log("slice")
       final = final.filter(item => item !== deviceName)
     }
 
@@ -46,7 +45,7 @@ export default function CategoryInputs(props) {
 
   function urlChangeHandler() {
     props.setUrl(document.querySelector('#url').value)
-    if(props.currentDevices.length == 0){
+    if(props.currentDevices.length === 0){
       props.setCurrentDevices(["BlackBerry Z30"])
     }
   }
