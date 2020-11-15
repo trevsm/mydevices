@@ -18,7 +18,7 @@ export default function App() {
         currentDevices={currentDevices}
         setCurrentDevices={setCurrentDevices}
       />
-      <DeviceView devices={devices} url={url} currentDevices={currentDevices} />
+      {/* <DeviceView devices={devices} url={url} currentDevices={currentDevices} /> */}
     </>
   )
 }

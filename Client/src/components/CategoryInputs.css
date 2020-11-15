@@ -1,7 +1,6 @@
 .inputList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .input {
@@ -9,10 +8,21 @@
     cursor: pointer;
     padding: 5px;
     user-select: none;
+    transition: all .07s ease;
 }
 
 .input.active{
     background-color: #fc7b80;
+}
+
+label.active:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 0 5px 0 #0052ec;
 }
 
 .urlInput{
@@ -22,4 +32,26 @@
 
 .urlInput input, .urlInput button{
     margin-right: 5px;
+}
+.category, .company{
+    position: relative;
+    outline: none;
+    user-select: none;
+}
+
+.open > .options{
+    opacity: 1;
+    height: fit-content;
+}
+
+.options ~ label{
+    background-color: pink;
+}
+
+.options {
+    top: 20px;
+    opacity: 0;
+    height: 1px;
+    overflow: hidden;
+    transition:all 1s ease;
 }
