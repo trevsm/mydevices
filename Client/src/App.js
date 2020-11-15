@@ -7,7 +7,7 @@ import './App.css'
 
 export default function App() {
   const [url, setUrl] = useState('https://example.com')
-  const [currentDevices, setCurrentDevices] = useState(['BlackBerry Z30'])
+  const [currentDevices, setCurrentDevices] = useState(['Phones|Apple|iPhone 4'])
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function App() {
         currentDevices={currentDevices}
         setCurrentDevices={setCurrentDevices}
       />
-      {/* <DeviceView devices={devices} url={url} currentDevices={currentDevices} /> */}
+      <DeviceView devices={devices} url={url} currentDevices={currentDevices} />
     </>
   )
 }

@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 async function getScreenShot(url, filename, w, h) {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  await page.setViewport({ width: w, height: h })
+  await page.setViewport({ width: w, height: h})
   await page.goto(url, { waitUntil: 'networkidle2' })
   await page.screenshot({ path: `images/${filename}.png` })
   await browser.close()

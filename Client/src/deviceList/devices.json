@@ -2,164 +2,192 @@
   "Phones": {
     "Apple": {
       "iPhone 4": {
+        "bezel": "large",
         "width": 320,
         "height": 480
       },
       "iPhone 5/SE": {
+        "bezel": "large",
         "width": 320,
         "height": 568
       },
       "iPhone 6/7/8": {
+        "bezel": "large",
         "width": 375,
         "height": 667
       },
       "iPhone 6/7/8 Plus": {
+        "bezel": "large",
         "width": 414,
         "height": 736
       },
       "iPhone X": {
+        "bezel": "notch skinny",
         "width": 375,
         "height": 812
       }
     },
     "Samsung": {
       "Galaxy Note 3": {
+        "bezel": "medium",
         "width": 360,
         "height": 640
       },
       "Galaxy Note 2": {
+        "bezel": "medium",
         "width": 360,
         "height": 640
       },
       "Galaxy S3": {
+        "bezel": "medium",
         "width": 360,
         "height": 640
       },
       "Galaxy S5": {
+        "bezel": "medium",
         "width": 360,
         "height": 640
       },
       "Galaxy Fold": {
-        "width": 280,
-        "height": 653
+        "bezel": "split skinny",
+        "width": 660,
+        "height": 753
       }
     },
-    "Google":{
+    "Google": {
       "Pixel 2": {
+        "bezel": "large",
         "width": 411,
         "height": 731
       },
       "Pixel 2XL": {
+        "bezel": "large",
         "width": 411,
         "height": 823
       },
       "Nexus 4": {
+        "bezel": "large",
         "width": 384,
         "height": 640
       },
       "Nexus 5": {
+        "bezel": "large",
         "width": 360,
         "height": 640
       },
       "Nexus 5X": {
+        "bezel": "large",
         "width": 412,
         "height": 732
       },
       "Nexus 6": {
+        "bezel": "large",
         "width": 412,
         "height": 732
       },
       "Nexus 6P": {
+        "bezel": "large",
         "width": 412,
         "height": 732
-      },
-      "Nexus 7": {
-        "width": 600,
-        "height": 960
       }
     },
     "Other": {
       "BlackBerry Z30": {
+        "bezel": "large",
         "width": 360,
         "height": 640
       },
-      "BlackBerry PlayBook": {
-        "width": 600,
-        "height": 1040
-      },
       "LG Optimus L70": {
+        "bezel": "large",
         "width": 384,
         "height": 640
       },
       "Microsoft Lumia 550": {
+        "bezel": "large",
         "width": 360,
         "height": 640
       },
       "Microsoft Lumia 950": {
+        "bezel": "large",
         "width": 360,
         "height": 640
       },
       "Moto G4": {
+        "bezel": "large",
         "width": 360,
         "height": 640
       },
       "Nokia Lumia 520": {
+        "bezel": "large",
         "width": 320,
         "height": 533
-      },
-      "Nokia N9": {
-        "width": 480,
-        "height": 854
-      },
-      "JioPhone 2": {
-        "width": 240,
-        "height": 320
       }
     }
   },
-  "Tablets":{
-    "Apple":{
+  "Tablets": {
+    "Apple": {
       "iPad": {
+        "bezel": "xlarge",
         "width": 768,
         "height": 1024
       },
       "iPad Mini": {
+        "bezel": "large",
         "width": 768,
         "height": 1024
       },
       "iPad Pro": {
+        "bezel": "skinny",
         "width": 1024,
         "height": 1366
       }
     },
-    "Amazon":{
+    "Google":{
+      "Nexus 7": {
+        "bezel":"xlarge nobutton",
+        "width": 600,
+        "height": 960
+      }
+    },
+    "Amazon": {
       "Kindle Fire HDX": {
+        "bezel": "large nobutton",
         "width": 800,
         "height": 1280
       }
     },
-    "Other":{
+    "Other": {
       "Nexus 10": {
+        "bezel": "xlarge",
         "width": 1280,
         "height": 800
       },
       "Surface Duo": {
-        "width": 540,
+        "bezel": "split large nobutton",
+        "width": 1080,
         "height": 720
+      },
+      "BlackBerry PlayBook": {
+        "bezel": "xlarge",
+        "width": 600,
+        "height": 1040
       }
     }
   },
-  "Laptops":{
-    "Generic":{
+  "Laptops": {
+    "Generic": {
       "Laptop with HiDPI screen": {
+        "bezel": "skinny",
         "width": 1440,
         "height": 900
       },
       "Laptop with MDPI screen": {
+        "bezel": "skinny",
         "width": 1280,
         "height": 800
       },
       "Laptop with touch": {
+        "bezel": "skinny",
         "width": 1280,
         "height": 950
       }

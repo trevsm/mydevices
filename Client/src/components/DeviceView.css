@@ -2,19 +2,149 @@
     margin: 10px;
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .viewContainer .device {
+    position: relative;
     margin: 30px;
-    border-radius: 10px;
-    border: 10px solid;
+    border-radius: 20px;
+    background-color: #2b2b2b;
+    transition: all 1s ease;
+}
+
+.device.nobutton:after {
+    border: none !important;
+}
+
+.device.xlarge {
+    padding: 40px 40px 40px 40px;
+}
+
+.device.xlarge img {
+    border-radius: 3px;
+}
+
+.device.xlarge:after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 25px;
+    height: 25px;
+    border-radius: 30px;
+    border: 2px solid grey;
+}
+
+.device.large {
+    padding: 40px 7px 40px 7px;
+}
+
+.device.large img {
+    border-radius: 3px;
+}
+
+.device.large:after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 25px;
+    height: 25px;
+    border-radius: 30px;
+    border: 2px solid grey;
+}
+
+.device.medium {
+    padding: 25px 7px 25px 7px;
+}
+
+.device.medium img {
+    border-radius: 3px;
+}
+
+.device.medium:after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30px;
+    height: 10px;
+    border-radius: 30px;
+    border: 2px solid grey;
+}
+
+.device.skinny {
+    padding: 7px 7px 3px 7px;
+}
+
+.device.skinny img {
+    border-radius: 15px;
+}
+
+.device:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0;
     background-image: url("../images/zigzag.svg");
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #2b2b2b;
+    transition: opacity .5s ease;
 }
 
-.device img{
-    border-radius: 6px;
+.device.notch:after{
+    content: '';
+    width: 100px;
+    height: 15px;
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    background-color: #2b2b2b;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.device.split:after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    opacity: .5;
+    height: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-radius: 0;
+    bottom: 0;
+    background-color: #525252;
+}
+
+.device.loading:before {
+    opacity: 1;
+}
+
+.device.loading img {
+    opacity: 0;
+}
+
+.device img {
+    border: 0;
+    border-top: 20px;
+    border-bottom:20px;
+    border-style: solid;
+    border-color: grey;
+    background-color: white;
+    opacity: 1;
+    border-radius: 15px;
+    transition: opacity .5s ease;
 }

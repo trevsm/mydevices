@@ -2,19 +2,19 @@ import React from 'react'
 import './CategoryInputs.css'
 
 export default function CategoryInputs(props) {
-  function toggleActive(deviceName) {
+  function toggleActive(trace) {
     let final = [...props.currentDevices]
 
-    if (props.currentDevices.includes(deviceName)) {
-      final = final.filter(item => item !== deviceName)
+    if (props.currentDevices.includes(trace)) {
+      final = final.filter(item => item !== trace)
     }
 
     if (final.length >= 3) {
       final.shift()
     }
 
-    if (!props.currentDevices.includes(deviceName)) {
-      final.push(deviceName)
+    if (!props.currentDevices.includes(trace)) {
+      final.push(trace)
     }
 
     props.setCurrentDevices(final)
@@ -22,15 +22,8 @@ export default function CategoryInputs(props) {
 
   function handleInputClick(e) {
     const target = e.target
-    const traceBack = target.getAttribute('trace-back')
-    const traceBackElems = document.querySelectorAll(traceBack)
-
-    traceBackElems.forEach((node)=>{
-      node.querySelector('label').classList.toggle('active')
-    })
-
-    const value = target.getAttribute('value')
-    toggleActive(value)
+    const trace = target.getAttribute('trace')
+    toggleActive(trace)
   }
 
   function toggleOpen(e) {
@@ -49,6 +42,12 @@ export default function CategoryInputs(props) {
   }
 
   function inputList() {
+    const currentTraceList = props.currentDevices
+
+    const amIActive = type => {
+      return currentTraceList.join(', ').includes(type.join('|'))
+    }
+
     return Object.keys(props.devices).map((category, ia) => {
       return (
         <div
@@ -58,7 +57,11 @@ export default function CategoryInputs(props) {
           key={category}
           tabIndex={ia + 1}
         >
-          <label htmlFor={category} onClick={toggleOpen}>
+          <label
+            className={`${amIActive([category]) ? 'active' : ''}`}
+            htmlFor={category}
+            onClick={toggleOpen}
+          >
             {category}
           </label>
           <div className="options">
@@ -71,21 +74,29 @@ export default function CategoryInputs(props) {
                   key={company}
                   tabIndex={ib + 1 * 10}
                 >
-                  <label htmlFor={company} onClick={toggleOpen}>
+                  <label
+                    className={`${
+                      amIActive([category, company]) ? 'active' : ''
+                    }`}
+                    htmlFor={company}
+                    onClick={toggleOpen}
+                  >
                     {company}
                   </label>
-                  <div className="options">
+                  <div className={`options`}>
                     {Object.keys(props.devices[category][company]).map(
                       deviceName => {
-                        const active = props.currentDevices.includes(deviceName)
+                        const trace = [category, company, deviceName]
+                        const active = props.currentDevices.includes(
+                          trace.join('|')
+                        )
                           ? ' active'
                           : ''
                         return (
                           <div
                             className={`input${active}`}
-                            trace-back={`.${company}, .${category}`}
                             key={deviceName}
-                            value={deviceName}
+                            trace={trace.join('|')}
                             onClick={handleInputClick}
                           >
                             {deviceName}
@@ -106,7 +117,7 @@ export default function CategoryInputs(props) {
   function urlChangeHandler() {
     props.setUrl(document.querySelector('#url').value)
     if (props.currentDevices.length === 0) {
-      props.setCurrentDevices(['BlackBerry Z30'])
+      props.setCurrentDevices(['Phones|Apple|iPhone 4'])
     }
   }
 
@@ -119,12 +130,12 @@ export default function CategoryInputs(props) {
 
   return (
     <>
-      <div className="inputList">{inputList()}</div>
       <div className="urlInput">
         <input id="url" type="text" placeholder="https://example.com" />
         <button onClick={urlChangeHandler}>Go</button>
         <button onClick={clearAllHandler}>Clear All</button>
       </div>
+      <div className="inputList">{inputList()}</div>
     </>
   )
 }

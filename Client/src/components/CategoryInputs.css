@@ -1,6 +1,8 @@
 .inputList {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
 }
 
 .input {
@@ -11,47 +13,53 @@
     transition: all .07s ease;
 }
 
-.input.active{
+.input.active {
     background-color: #fc7b80;
 }
 
-label.active:after{
+label{
+    cursor: pointer;
+}
+
+label.active:after {
     content: '';
     position: absolute;
-    top: 0;
+    top: 2px;
+    transform: translateX(3px);
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    box-shadow: 0 5px 0 #0052ec;
+    box-shadow: 0 5px 0#fc7b80;
 }
 
-.urlInput{
+.urlInput {
     display: flex;
     padding: 15px;
+    justify-content: center;
 }
 
-.urlInput input, .urlInput button{
+.urlInput input,
+.urlInput button {
     margin-right: 5px;
 }
-.category, .company{
+
+.category,
+.company {
     position: relative;
     outline: none;
     user-select: none;
-}
-
-.open > .options{
-    opacity: 1;
     height: fit-content;
 }
 
-.options ~ label{
-    background-color: pink;
+.open>.options {
+    opacity: 1;
+    height: fit-content;
 }
 
 .options {
     top: 20px;
     opacity: 0;
-    height: 1px;
+    height: 0; 
     overflow: hidden;
-    transition:all 1s ease;
+    transition: all .25s ease-out;
 }
