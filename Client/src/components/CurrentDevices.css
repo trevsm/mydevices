@@ -1,0 +1,15 @@
+.currentDevices{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    display: flex;
+}
+.currentDevices .active:after{
+    position: relative;
+    content: ' x';
+    top: -1px;
+    right: -2px;
+    color: white;
+    padding: 4px;
+}

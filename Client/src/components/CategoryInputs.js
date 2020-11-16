@@ -1,4 +1,5 @@
 import React from 'react'
+import CurrentDevices from "./CurrentDevices"
 import './CategoryInputs.css'
 
 export default function CategoryInputs(props) {
@@ -9,7 +10,7 @@ export default function CategoryInputs(props) {
       final = final.filter(item => item !== trace)
     }
 
-    if (final.length >= 3) {
+    if (final.length >= props.maxDeviceLimit) {
       final.shift()
     }
 
@@ -24,21 +25,6 @@ export default function CategoryInputs(props) {
     const target = e.target
     const trace = target.getAttribute('trace')
     toggleActive(trace)
-  }
-
-  function toggleOpen(e) {
-    const parent = e.target.parentElement
-    parent.classList.toggle('open')
-    closeOtherOpenCategories(parent)
-  }
-
-  function closeOtherOpenCategories(elem) {
-    const group = document.querySelectorAll(`.${elem.getAttribute('group')}`)
-    group.forEach(curr => {
-      if (elem !== curr) {
-        curr.classList.remove('open')
-      }
-    })
   }
 
   function inputList() {
@@ -60,11 +46,10 @@ export default function CategoryInputs(props) {
           <label
             className={`${amIActive([category]) ? 'active' : ''}`}
             htmlFor={category}
-            onClick={toggleOpen}
           >
             {category}
           </label>
-          <div className="options">
+          <div className="group">
             {Object.keys(props.devices[category]).map((company, ib) => {
               return (
                 <div
@@ -79,7 +64,6 @@ export default function CategoryInputs(props) {
                       amIActive([category, company]) ? 'active' : ''
                     }`}
                     htmlFor={company}
-                    onClick={toggleOpen}
                   >
                     {company}
                   </label>
@@ -114,28 +98,13 @@ export default function CategoryInputs(props) {
     })
   }
 
-  function urlChangeHandler() {
-    props.setUrl(document.querySelector('#url').value)
-    if (props.currentDevices.length === 0) {
-      props.setCurrentDevices(['Phones|Apple|iPhone 4'])
-    }
-  }
-
-  function clearAllHandler() {
-    document.querySelectorAll('.open').forEach(x => {
-      x.classList.remove('open')
-    })
-    props.setCurrentDevices([])
-  }
-
   return (
-    <>
-      <div className="urlInput">
-        <input id="url" type="text" placeholder="https://example.com" />
-        <button onClick={urlChangeHandler}>Go</button>
-        <button onClick={clearAllHandler}>Clear All</button>
-      </div>
-      <div className="inputList">{inputList()}</div>
-    </>
+    <div className="inputList">
+      <CurrentDevices
+        currentDevices={props.currentDevices}
+        setCurrentDevices={props.setCurrentDevices}
+      />
+      {inputList()}
+    </div>
   )
 }

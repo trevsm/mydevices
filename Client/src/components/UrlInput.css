@@ -1,0 +1,10 @@
+.urlInput {
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+}
+
+.urlInput input,
+.urlInput button {
+    margin-right: 5px;
+}

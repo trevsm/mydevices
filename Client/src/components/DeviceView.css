@@ -12,6 +12,7 @@
     border-radius: 20px;
     background-color: #2b2b2b;
     transition: all 1s ease;
+    min-width: fit-content;
 }
 
 .device.nobutton:after {
@@ -143,7 +144,7 @@
     border-bottom:20px;
     border-style: solid;
     border-color: grey;
-    background-color: white;
+    background-color: transparent;
     opacity: 1;
     border-radius: 15px;
     transition: opacity .5s ease;
