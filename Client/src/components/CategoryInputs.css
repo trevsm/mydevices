@@ -1,76 +1,100 @@
 .inputList {
-    background-color: white;
-    padding: 5px 20px;
-    padding-top: 40px;
-    position: fixed;
-    bottom: 0;
-    transform: translateY(91%);
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-wrap: wrap;
-    box-shadow: 1px 5px 9px black;
-    transition: transform .7s ease;
-}
-.options .active{
-    display: none;
+  background-color: white;
+  /* max-height: calc(-30px + 80vh); */
+  position: fixed;
+  bottom: 0;
+  transform: translateY(calc(-40px + 100%));
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 1px 5px 9px black;
+  transition: transform 0.7s ease;
 }
 
-.inputList:hover{
-    transform: none;
+.inputList .top {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+}
+
+.inputList .main{
+  max-height: 60vh;
+  width: 100%;
+}
+
+.options .active {
+  display: none;
+}
+
+.inputList.open {
+  transform: translateY(0);
+}
+
+.inputList.open .main{
+  overflow: auto;
 }
 
 .input {
-    position: relative;
-    width: fit-content;
-    height: fit-content;
-    cursor: pointer;
-    padding: 5px;
-    margin: 5px;
-    user-select: none;
-    transition: all .07s ease;
-    box-shadow: 0px 0px 5px #dfdfdf;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  user-select: none;
+  transition: all 0.07s ease;
+  box-shadow: 0px 0px 5px #dfdfdf;
 }
 
 .input.active {
-    background-color: #fc7b80;
-    color: #2f2f2f;
+  background-color: #fc7b80;
+  color: #2f2f2f;
 }
 
 label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 label.active:after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    transform: translateX(3px);
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    box-shadow: 0 5px #fc7b80;
+  content: '';
+  position: absolute;
+  top: 2px;
+  transform: translateX(3px);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: 0 5px #fc7b80;
+}
+
+.category {
+  margin: 20px;
 }
 
 .category,
 .company {
-    position: relative;
-    outline: none;
-    user-select: none;
-    height: fit-content;
+  position: relative;
+  outline: none;
+  user-select: none;
+  height: fit-content;
 }
 
-.company{
-    margin: 10px;
+.company {
+  margin: 10px;
 }
 
 .group {
-    display: flex;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .options {
-    max-width: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
+  max-width: 250px;
+  min-width: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }

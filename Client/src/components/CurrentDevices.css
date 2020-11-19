@@ -1,9 +1,8 @@
-.currentDevices{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
+.currentDevices {
     display: flex;
+    overflow-x: auto;
+    width: 100%;
+    background-color:white;
 }
 .currentDevices .active:after{
     position: relative;
@@ -12,4 +11,14 @@
     right: -2px;
     color: white;
     padding: 4px;
+}
+
+.currentDevices .input{
+    min-width: fit-content;
+}
+
+.currentDevices .message{
+    padding: 5px;
+    margin: 5px;
+    color: white;
 }

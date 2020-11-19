@@ -118,7 +118,7 @@
         "height": 640
       },
       "Nokia Lumia 520": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 320,
         "height": 533
       }

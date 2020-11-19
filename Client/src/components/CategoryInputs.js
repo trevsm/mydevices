@@ -1,8 +1,11 @@
-import React from 'react'
-import CurrentDevices from "./CurrentDevices"
+import React, { useState } from 'react'
+import CurrentDevices from './CurrentDevices'
+import OpenIcon from '../icons/Open'
 import './CategoryInputs.css'
 
 export default function CategoryInputs(props) {
+  const [open, setOpen] = useState(false)
+
   function toggleActive(trace) {
     let final = [...props.currentDevices]
 
@@ -27,12 +30,16 @@ export default function CategoryInputs(props) {
     toggleActive(trace)
   }
 
-  function inputList() {
-    const currentTraceList = props.currentDevices
+  function toggleInputList() {
+    setOpen(!open)
+  }
 
-    const amIActive = type => {
-      return currentTraceList.join(', ').includes(type.join('|'))
-    }
+  function inputList() {
+    // const currentTraceList = props.currentDevices
+
+    // const amIActive = type => {
+    //   return currentTraceList.join(', ').includes(type.join('|'))
+    // }
 
     return Object.keys(props.devices).map((category, ia) => {
       return (
@@ -43,12 +50,7 @@ export default function CategoryInputs(props) {
           key={category}
           tabIndex={ia + 1}
         >
-          <label
-            className={`${amIActive([category]) ? 'active' : ''}`}
-            htmlFor={category}
-          >
-            {category}
-          </label>
+          <label htmlFor={category}>{category}</label>
           <div className="group">
             {Object.keys(props.devices[category]).map((company, ib) => {
               return (
@@ -59,14 +61,7 @@ export default function CategoryInputs(props) {
                   key={company}
                   tabIndex={ib + 1 * 10}
                 >
-                  <label
-                    className={`${
-                      amIActive([category, company]) ? 'active' : ''
-                    }`}
-                    htmlFor={company}
-                  >
-                    {company}
-                  </label>
+                  <label htmlFor={company}>{company}</label>
                   <div className={`options`}>
                     {Object.keys(props.devices[category][company]).map(
                       deviceName => {
@@ -99,12 +94,17 @@ export default function CategoryInputs(props) {
   }
 
   return (
-    <div className="inputList">
-      <CurrentDevices
-        currentDevices={props.currentDevices}
-        setCurrentDevices={props.setCurrentDevices}
-      />
-      {inputList()}
+    <div className={`inputList${open ? ' open' : ''}`}>
+      <div className="top">
+        <CurrentDevices
+          currentDevices={props.currentDevices}
+          setCurrentDevices={props.setCurrentDevices}
+        />
+        <div onClick={toggleInputList}>
+          <OpenIcon />
+        </div>
+      </div>
+      <div className="main">{inputList()}</div>
     </div>
   )
 }

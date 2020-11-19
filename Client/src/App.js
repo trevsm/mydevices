@@ -12,7 +12,7 @@ export default function App() {
     'Phones|Apple|iPhone 4',
   ])
 
-  const maxDeviceLimit = 5
+  const maxDeviceLimit = 3
 
   return (
     <>
