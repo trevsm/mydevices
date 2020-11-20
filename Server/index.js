@@ -10,7 +10,8 @@ app.use((req, res, next) => {
 })
 
 async function getScreenShot(url, filename, w, h) {
-  const browser = await puppeteer.launch()
+  const options = {ignoreDefaultArgs: ["--enable-automation"]}
+  const browser = await puppeteer.launch(options)
   const page = await browser.newPage()
   await page.setViewport({ width: w, height: h})
   await page.goto(url, { waitUntil: 'networkidle2' })
@@ -19,7 +20,7 @@ async function getScreenShot(url, filename, w, h) {
 }
 
 app.get('/api', async (client_req, client_res) => {
-  const url = client_req.query.q
+  let url = client_req.query.q
   const origin = url.split('/')[2]
 
   let w = parseInt(client_req.query.width)
@@ -29,6 +30,15 @@ app.get('/api', async (client_req, client_res) => {
   h = !h | (h > 5000) ? 1080 : h
 
   const filename = `${origin}${w}x${h}`
+
+  if(url.match(/^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?$/igm)){
+    if(!url.match(/^(https?:\/\/)/g)){
+      url = 'https://' + url
+    }
+  }else{
+    url = 'https://example.com'
+  }
+  
 
   getScreenShot(url, filename, w, h)
     .then(() => {

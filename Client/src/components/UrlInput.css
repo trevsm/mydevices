@@ -8,3 +8,16 @@
 .urlInput button {
     margin-right: 5px;
 }
+
+.urlInput button{
+    opacity: 1;
+    transition: opacity .27s ease;
+    cursor: pointer;
+}
+
+.urlInput button.invalid {
+    opacity: .5;
+    pointer-events: none;
+    user-select: none;
+    cursor: default;
+}

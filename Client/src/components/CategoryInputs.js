@@ -31,6 +31,7 @@ export default function CategoryInputs(props) {
   }
 
   function toggleInputList() {
+    // document.querySelector('#root').classList.toggle('disabled')
     setOpen(!open)
   }
 
