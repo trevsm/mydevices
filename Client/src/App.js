@@ -13,6 +13,7 @@ export default function App() {
   ])
 
   const maxDeviceLimit = 3
+  const apiDomain = 'http://localhost:5000/api'
 
   return (
     <>
@@ -21,9 +22,14 @@ export default function App() {
         currentDevices={currentDevices}
         setCurrentDevices={setCurrentDevices}
       />
-      <DeviceView devices={devices} url={url} currentDevices={currentDevices} />
+      <DeviceView
+        apiDomain={apiDomain}
+        devices={devices}
+        url={url}
+        currentDevices={currentDevices}
+      />
       <CategoryInputs
-      maxDeviceLimit={maxDeviceLimit}
+        maxDeviceLimit={maxDeviceLimit}
         devices={devices}
         setUrl={setUrl}
         url={url}

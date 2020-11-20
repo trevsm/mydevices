@@ -9,12 +9,18 @@ app.use((req, res, next) => {
   return next()
 })
 
-async function getScreenShot(url, filename, w, h) {
-  const options = {ignoreDefaultArgs: ["--enable-automation"]}
+async function getScreenShot(url, filename, mode, w, h) {
+  const options = { ignoreDefaultArgs: ['--enable-automation'] }
   const browser = await puppeteer.launch(options)
   const page = await browser.newPage()
-  await page.setViewport({ width: w, height: h})
+  await page.setViewport({ width: w, height: h })
   await page.goto(url, { waitUntil: 'networkidle2' })
+
+  // if (mode == 'landscape')
+  //   await page.evaluate(() => {
+  //     document.body.style.transform = 'rotate(-90deg)'
+  //   })
+
   await page.screenshot({ path: `images/${filename}.png` })
   await browser.close()
 }
@@ -22,6 +28,8 @@ async function getScreenShot(url, filename, w, h) {
 app.get('/api', async (client_req, client_res) => {
   let url = client_req.query.q
   const origin = url.split('/')[2]
+
+  const mode = client_req.query.mode
 
   let w = parseInt(client_req.query.width)
   let h = parseInt(client_req.query.height)
@@ -31,16 +39,19 @@ app.get('/api', async (client_req, client_res) => {
 
   const filename = `${origin}${w}x${h}`
 
-  if(url.match(/^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?$/igm)){
-    if(!url.match(/^(https?:\/\/)/g)){
+  if (
+    url.match(
+      /^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?$/gim
+    )
+  ) {
+    if (!url.match(/^(https?:\/\/)/g)) {
       url = 'https://' + url
     }
-  }else{
+  } else {
     url = 'https://example.com'
   }
-  
 
-  getScreenShot(url, filename, w, h)
+  getScreenShot(url, filename, mode, w, h)
     .then(() => {
       client_res.writeHead(200, { 'content-type': 'image/png' })
 
@@ -50,7 +61,7 @@ app.get('/api', async (client_req, client_res) => {
 
       fs.createReadStream(`images/${filename}.png`).pipe(client_res)
     })
-    .catch((e) => {
+    .catch(e => {
       console.log(e)
       client_res.sendStatus(404)
     })

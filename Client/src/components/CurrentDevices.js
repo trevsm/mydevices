@@ -11,7 +11,7 @@ export function Device(props) {
 
 export function DeviceList(props) {
   if (!props.currentDevices.length)
-    return <div className="message">No device picked...</div>
+    return <div className="message">Select a device below.</div>
   return props.currentDevices.map(device => {
     return <Device key={device} device={device} callback={props.callback} />
   })

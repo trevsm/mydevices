@@ -3,6 +3,7 @@ import './DeviceView.css'
 
 export function Device(props) {
   const [loading, setLoading] = useState(true)
+  const [mode, setMode] = useState('portrait')
 
   useEffect(() => {
     setLoading(true)
@@ -13,14 +14,14 @@ export function Device(props) {
   const obj = props.devices[p[0]][p[1]][p[2]]
   const [width, height] = [obj.width + 100, obj.height]
   return (
-    <div className="deviceWrapper">
+    <div className={"deviceWrapper " + mode}>
       <span className="deviceLabel">{`${name} ${width}x${height}`}</span>
       <div
         className={`${name} device${loading ? ' loading' : ''} ${obj.bezel}`}
         key={name}
       >
         <img
-          src={`http://localhost:5000/api?q=${props.url}&width=${width}&height=${height})`}
+          src={`${props.apiDomain}?q=${props.url}&width=${width}&height=${height}&mode=${mode}`}
           alt={name}
           style={{
             minWidth: width * props.scale,
@@ -44,6 +45,7 @@ export default function DeviceViews(props) {
         <Device
           key={path}
           path={path}
+          apiDomain={props.apiDomain}
           devices={props.devices}
           url={props.url}
           scale={scale}

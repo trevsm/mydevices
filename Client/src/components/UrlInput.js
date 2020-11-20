@@ -9,12 +9,6 @@ export default function UrlInput(props) {
       props.setCurrentDevices(['Phones|Apple|iPhone 4'])
     }
   }
-  // function clearAllHandler() {
-  //   document.querySelectorAll('.open').forEach(x => {
-  //     x.classList.remove('open')
-  //   })
-  //   props.setCurrentDevices([])
-  // }
 
   function handleTyping(e) {
     if (
@@ -42,7 +36,6 @@ export default function UrlInput(props) {
       >
         Go
       </button>
-      {/* <button onClick={clearAllHandler}>Clear All</button> */}
     </div>
   )
 }

@@ -2,13 +2,17 @@
     box-sizing: content-box;
 }
 
+body, html{
+    overflow-y: hidden;
+}
+
 body {
     min-width: 280px;
+    height: 100vh;
 }
 
 #root {
     margin: 0 auto;
     font-family: sans-serif;
     color: #2b2b2b;
-    padding: 20px;
 }
