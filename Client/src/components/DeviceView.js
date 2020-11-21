@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import NoDevices from '../icons/NoDevices'
 import './DeviceView.css'
 
 export function Device(props) {
@@ -14,7 +15,7 @@ export function Device(props) {
   const obj = props.devices[p[0]][p[1]][p[2]]
   const [width, height] = [obj.width + 100, obj.height]
   return (
-    <div className={"deviceWrapper " + mode}>
+    <div className={'deviceWrapper ' + mode}>
       <span className="deviceLabel">{`${name} ${width}x${height}`}</span>
       <div
         className={`${name} device${loading ? ' loading' : ''} ${obj.bezel}`}
@@ -53,5 +54,16 @@ export default function DeviceViews(props) {
       )
     })
   }
-  return <div className="viewContainer">{views()}</div>
+  return (
+    <div className="viewContainer">
+      {props.currentDevices.length ? (
+        views()
+      ) : (
+        <div className="noDevices">
+          <NoDevices />
+          <span className="message">No devices selected.</span>
+        </div>
+      )}
+    </div>
+  )
 }
