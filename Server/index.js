@@ -21,7 +21,7 @@ async function goodUrl(url) {
 }
 
 async function getScreenShot(url, filename, mode, w, h) {
-  const options = { ignoreDefaultArgs: ['--enable-automation'] }
+  const options = { args:['--no-sandbox'],ignoreDefaultArgs: ['--enable-automation'] }
   const browser = await puppeteer.launch(options)
   const page = await browser.newPage()
   await page.setViewport({ width: w, height: h })
