@@ -1,5 +1,6 @@
 const express = require('express')
 const { exec } = require('child_process')
+const fetch = require('node-fetch')
 const fs = require('fs')
 const app = express()
 const puppeteer = require('puppeteer')
@@ -8,6 +9,10 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   return next()
 })
+
+async function goodUrl(url){
+  return await fetch(url).then(d => d.status).catch(e => false)
+}
 
 async function getScreenShot(url, filename, mode, w, h) {
   const options = { ignoreDefaultArgs: ['--enable-automation'] }
@@ -45,11 +50,13 @@ app.get('/api', async (client_req, client_res) => {
     )
   ) {
     if (!url.match(/^(https?:\/\/)/g)) {
-      url = 'https://' + url
+      url = 'http://' + url
     }
   } else {
     url = 'https://example.com'
   }
+
+  if(!await goodUrl(url)) url = `https://via.placeholder.com/${w}x${h}.png?text=Oops,+404`
 
   getScreenShot(url, filename, mode, w, h)
     .then(() => {

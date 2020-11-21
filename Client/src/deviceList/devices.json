@@ -56,64 +56,64 @@
     },
     "Google": {
       "Pixel 2": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 411,
         "height": 731
       },
       "Pixel 2XL": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 411,
         "height": 823
       },
       "Nexus 4": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 384,
         "height": 640
       },
       "Nexus 5": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 360,
         "height": 640
       },
       "Nexus 5X": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 412,
         "height": 732
       },
       "Nexus 6": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 412,
         "height": 732
       },
       "Nexus 6P": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 412,
         "height": 732
       }
     },
     "Other": {
       "BlackBerry Z30": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 360,
         "height": 640
       },
       "LG Optimus L70": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 384,
         "height": 640
       },
       "Microsoft Lumia 550": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 360,
         "height": 640
       },
       "Microsoft Lumia 950": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 360,
         "height": 640
       },
       "Moto G4": {
-        "bezel": "large",
+        "bezel": "large nobutton",
         "width": 360,
         "height": 640
       },
@@ -167,7 +167,7 @@
         "width": 1080,
         "height": 720
       },
-      "BlackBerry PlayBook": {
+      "BlackBerry Pl+ayBook": {
         "bezel": "xlarge",
         "width": 600,
         "height": 1040
