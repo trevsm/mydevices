@@ -11,7 +11,9 @@ export default function UrlInput(props) {
         /^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?$/gim
       )
     ) {
-      if (validUrl == false) setValidUrl(true)
+      if (validUrl == false) {
+        setValidUrl(true)
+      }
     } else {
       if (validUrl == true) setValidUrl(false)
     }
@@ -20,7 +22,11 @@ export default function UrlInput(props) {
   function handleSubmit(e) {
     e.preventDefault()
     if (validUrl) {
-      props.setUrl(document.querySelector('.form').url.value)
+      const form = document.querySelector('.form')
+      if(!form.url.value.match(/(https?:\/\/)/g)){
+        form.url.value = 'https://'+form.url.value
+      }
+      props.setUrl(form.url.value)
       if (props.currentDevices.length === 0) {
         props.setCurrentDevices(['Phones|Apple|iPhone 4'])
       }

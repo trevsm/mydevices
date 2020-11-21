@@ -12,8 +12,8 @@ export default function App() {
     'Phones|Apple|iPhone 4',
   ])
 
-  const maxDeviceLimit = 3
-  const apiDomain = 'http://localhost:5000/api'
+  const maxDeviceLimit = 5
+  const apiDomain = 'http://192.168.86.150:5000/api'
 
   return (
     <>

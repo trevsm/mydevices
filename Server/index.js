@@ -47,7 +47,7 @@ app.get('/api', async (client_req, client_res) => {
   w = !w | (w > 5000) ? 1920 : w
   h = !h | (h > 5000) ? 1080 : h
 
-  const filename = `${origin}${w}x${h}`
+  const filename = `${origin}${w}x${h}_${mode}`
 
   if (
     url.match(
@@ -71,7 +71,7 @@ app.get('/api', async (client_req, client_res) => {
 
       setTimeout(() => {
         exec(`rm ./images/${filename}.png`)
-      }, 10000)
+      }, 500)
 
       fs.createReadStream(`images/${filename}.png`).pipe(client_res)
     })

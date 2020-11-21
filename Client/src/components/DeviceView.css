@@ -8,7 +8,8 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 50px * 2);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .viewContainer .device {
@@ -22,11 +23,31 @@
 .deviceWrapper {
   margin: 30px;
   position: relative;
-  transition: transform 1s ease;
+  transition: all .7s ease;
 }
 
 .deviceWrapper.landscape {
   transform: rotate(90deg);
+  margin: 0 100px;
+}
+
+.deviceWrapper.landscape .rotateIcon{
+  transform: rotateX(180deg) rotate(90deg);
+}
+
+.deviceWrapper .rotateIcon{
+  cursor: pointer;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  transition: transform .5s ease;
+}
+
+.device img {
+  background-color: transparent;
+  opacity: 1;
+  border-radius: 15px;
+  transition: opacity 0.5s ease;
 }
 
 .noDevices {
@@ -179,16 +200,4 @@ span.deviceLabel {
 
 .device.loading img {
   opacity: 0;
-}
-
-.device img {
-  border: 0;
-  border-top: 20px;
-  border-bottom: 20px;
-  border-style: solid;
-  border-color: grey;
-  background-color: transparent;
-  opacity: 1;
-  border-radius: 15px;
-  transition: opacity 0.5s ease;
 }
