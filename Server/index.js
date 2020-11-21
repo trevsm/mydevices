@@ -1,5 +1,6 @@
 const express = require('express')
-const { exec } = require('child_process')
+const util = require('util')
+const exec = util.promisify(require('child_process').exec)
 const fetch = require('node-fetch')
 const fs = require('fs')
 const app = express()
@@ -10,8 +11,10 @@ app.use((req, res, next) => {
   return next()
 })
 
-async function goodUrl(url){
-  return await fetch(url).then(d => d.status).catch(e => false)
+async function goodUrl(url) {
+  return await fetch(url)
+    .then(d => d.status)
+    .catch(e => false)
 }
 
 async function getScreenShot(url, filename, mode, w, h) {
@@ -20,14 +23,16 @@ async function getScreenShot(url, filename, mode, w, h) {
   const page = await browser.newPage()
   await page.setViewport({ width: w, height: h })
   await page.goto(url, { waitUntil: 'networkidle2' })
-
-  // if (mode == 'landscape')
-  //   await page.evaluate(() => {
-  //     document.body.style.transform = 'rotate(-90deg)'
-  //   })
-
   await page.screenshot({ path: `images/${filename}.png` })
+
+  if (mode == 'landscape') {
+    await exec(
+      `mogrify -rotate -90 ./images/${filename}.png`
+    ).catch(e => console.log(e))
+  }
+
   await browser.close()
+  return mode
 }
 
 app.get('/api', async (client_req, client_res) => {
@@ -56,15 +61,17 @@ app.get('/api', async (client_req, client_res) => {
     url = 'https://example.com'
   }
 
-  if(!await goodUrl(url)) url = `https://via.placeholder.com/${w}x${h}.png?text=Oops,+404`
+  if (!(await goodUrl(url)))
+    url = `https://via.placeholder.com/${w}x${h}.png?text=Oops,+404`
 
   getScreenShot(url, filename, mode, w, h)
-    .then(() => {
+    .then((mode) => {
+      console.log(mode)
       client_res.writeHead(200, { 'content-type': 'image/png' })
 
       setTimeout(() => {
         exec(`rm ./images/${filename}.png`)
-      }, 1000)
+      }, 10000)
 
       fs.createReadStream(`images/${filename}.png`).pipe(client_res)
     })

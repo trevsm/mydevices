@@ -27,14 +27,14 @@
   height: 30px;
   width: 100%;
   border-radius: 50px;
-  border: 1px solid #dfe1e5;
+  border: 1px solid #d2d2d2;
   outline: none;
   padding: 3px 30px;
   font-size: 17px;
 }
 
 .urlInput input::placeholder {
-  opacity: 0.2;
+  opacity: 0.35;
 }
 
 .urlInput input,

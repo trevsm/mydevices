@@ -1,8 +1,8 @@
 .currentDevices {
-    display: flex;
-    overflow-x: auto;
-    width: 100%;
-    background-color:white;
+    position: absolute;
+    left: 5px;
+    bottom: 50px;
+    width: fit-content;
 }
 .currentDevices .active .closeBtn{
     position: relative;
@@ -24,8 +24,10 @@
 }
 
 .currentDevices .input{
+    margin: 10px;
     cursor: default;
     display: flex;
+    box-shadow: none;
     min-width: fit-content;
 }
 

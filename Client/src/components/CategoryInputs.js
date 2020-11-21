@@ -36,12 +36,6 @@ export default function CategoryInputs(props) {
   }
 
   function inputList() {
-    // const currentTraceList = props.currentDevices
-
-    // const amIActive = type => {
-    //   return currentTraceList.join(', ').includes(type.join('|'))
-    // }
-
     return Object.keys(props.devices).map((category, ia) => {
       return (
         <div
@@ -101,7 +95,7 @@ export default function CategoryInputs(props) {
           currentDevices={props.currentDevices}
           setCurrentDevices={props.setCurrentDevices}
         />
-        <div onClick={toggleInputList}>
+        <div onClick={toggleInputList} style={{margin:'0 auto'}}>
           <OpenIcon />
         </div>
       </div>
