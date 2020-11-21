@@ -1,10 +1,13 @@
 const express = require('express')
 const util = require('util')
+const path = require('path')
 const exec = util.promisify(require('child_process').exec)
 const fetch = require('node-fetch')
 const fs = require('fs')
 const app = express()
 const puppeteer = require('puppeteer')
+
+const port = process.env.PORT || 80;
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -26,9 +29,9 @@ async function getScreenShot(url, filename, mode, w, h) {
   await page.screenshot({ path: `images/${filename}.png` })
 
   if (mode == 'landscape') {
-    await exec(
-      `mogrify -rotate -90 ./images/${filename}.png`
-    ).catch(e => console.log(e))
+    await exec(`mogrify -rotate -90 ./images/${filename}.png`).catch(e =>
+      console.log(e)
+    )
   }
 
   await browser.close()
@@ -65,7 +68,7 @@ app.get('/api', async (client_req, client_res) => {
     url = `https://via.placeholder.com/${w}x${h}.png?text=Oops,+404`
 
   getScreenShot(url, filename, mode, w, h)
-    .then((mode) => {
+    .then(mode => {
       console.log(mode)
       client_res.writeHead(200, { 'content-type': 'image/png' })
 
@@ -81,4 +84,10 @@ app.get('/api', async (client_req, client_res) => {
     })
 })
 
-app.listen(5000, () => console.log('listening on port 5000.'))
+app.use(express.static(path.join(__dirname, '../Client/build')))
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Client/build', 'index.html'))
+})
+
+app.listen(port, () => console.log('listening on port ' + port))

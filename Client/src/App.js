@@ -13,7 +13,7 @@ export default function App() {
   ])
 
   const maxDeviceLimit = 5
-  const apiDomain = 'http://192.168.86.150:5000/api'
+  const apiDomain = 'http://devices.red/api'
 
   return (
     <>
