@@ -3,8 +3,11 @@ import './CurrentDevices.css'
 
 export function Device(props) {
   return (
-    <div className="input active" trace={props.device} onClick={props.callback}>
+    <div className="input active">
       {props.device.split('|')[2]}
+      <div className="closeBtn" onClick={props.callback} trace={props.device}>
+        x
+      </div>
     </div>
   )
 }

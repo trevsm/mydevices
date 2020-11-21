@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
+import Search from '../icons/Search'
 import './UrlInput.css'
 
 export default function UrlInput(props) {
   const [validUrl, setValidUrl] = useState(false)
-  function urlChangeHandler() {
-    props.setUrl(document.querySelector('#url').value)
-    if (props.currentDevices.length === 0) {
-      props.setCurrentDevices(['Phones|Apple|iPhone 4'])
-    }
-  }
 
   function handleTyping(e) {
     if (
@@ -22,20 +17,33 @@ export default function UrlInput(props) {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (validUrl) {
+      props.setUrl(document.querySelector('.form').url.value)
+      if (props.currentDevices.length === 0) {
+        props.setCurrentDevices(['Phones|Apple|iPhone 4'])
+      }
+    } else {
+      console.log('invalid url')
+    }
+  }
+
   return (
     <div className="urlInput">
-      <input
-        id="url"
-        type="text"
-        placeholder="https://example.com"
-        onInput={handleTyping}
-      />
-      <button
-        onClick={urlChangeHandler}
-        className={validUrl ? 'valid' : 'invalid'}
-      >
-        Go
-      </button>
+      <form className="form" onSubmit={handleSubmit}>
+        <input
+          id="url"
+          name="url"
+          type="text"
+          className={validUrl ? 'valid' : 'invalid'}
+          placeholder="https://example.com"
+          onInput={handleTyping}
+        />
+        <div className="searchIcon" onClick={handleSubmit}>
+          <Search />
+        </div>
+      </form>
     </div>
   )
 }

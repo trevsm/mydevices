@@ -1,9 +1,13 @@
+.viewContainer *{
+  box-sizing: content-box;
+}
+
 .viewContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 45px * 2);
+  height: calc(100vh - 50px * 2);
   overflow: auto;
 }
 

@@ -4,16 +4,28 @@
     width: 100%;
     background-color:white;
 }
-.currentDevices .active:after{
+.currentDevices .active .closeBtn{
     position: relative;
-    content: ' x';
+    cursor: pointer;
     top: -1px;
     right: -2px;
     color: white;
     padding: 4px;
+    margin-left: 10px;
+    line-height: 10px;
+    transition: color .07s ease;
+}
+
+.currentDevices .closeBtn:hover{
+    color: #e6e6e6;
+}
+.currentDevices .closeBtn:active{
+    color: #bbbbbb;
 }
 
 .currentDevices .input{
+    cursor: default;
+    display: flex;
     min-width: fit-content;
 }
 
