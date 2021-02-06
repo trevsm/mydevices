@@ -7,12 +7,14 @@ const fs = require('fs')
 const app = express()
 const puppeteer = require('puppeteer')
 
-const port = process.env.PORT || 80;
+const port = 3000
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   return next()
 })
+
+app.use(express.static(path.join(__dirname, './images')))
 
 async function goodUrl(url) {
   return await fetch(url)
@@ -21,7 +23,10 @@ async function goodUrl(url) {
 }
 
 async function getScreenShot(url, filename, mode, w, h) {
-  const options = { args:['--no-sandbox'],ignoreDefaultArgs: ['--enable-automation'] }
+  const options = {
+    args: ['--no-sandbox'],
+    ignoreDefaultArgs: ['--enable-automation'],
+  }
   const browser = await puppeteer.launch(options)
   const page = await browser.newPage()
   await page.setViewport({ width: w, height: h })
