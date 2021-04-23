@@ -13,7 +13,7 @@ export default function App() {
   ])
 
   const maxDeviceLimit = 5
-  const apiDomain = 'http://devices.red/api'
+  const apiDomain = 'http://localhost:400/api'
 
   return (
     <>
