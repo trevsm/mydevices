@@ -7,7 +7,7 @@ const fs = require('fs')
 const app = express()
 const puppeteer = require('puppeteer')
 
-const port = 80
+const port = 3000
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
