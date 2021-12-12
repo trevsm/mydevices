@@ -13,7 +13,7 @@ export default function App() {
   ])
 
   const maxDeviceLimit = 5
-  const apiDomain = 'http://143.198.111.217/api'
+  const apiDomain = 'http://73.65.225.178/api'
 
   return (
     <>
